@@ -1,0 +1,47 @@
+<form [formGroup]="busForm" (ngSubmit)="addOrEditBus()" class="container mt-4">
+  <h2 class="mb-4">{{ busId ? 'Edit Bus Ticket' : 'Book Bus Ticket' }}</h2>
+  
+  <div class="mb-3">
+    <label for="busNumber" class="form-label">Bus Number</label>
+    <input type="text" id="busNumber" formControlName="busNumber" class="form-control">
+    <div *ngIf="busForm.get('busNumber')?.invalid && busForm.get('busNumber')?.touched" class="text-danger">
+      Bus Number is required
+    </div>
+  </div>
+  
+  <div class="mb-3">
+    <label for="routeSource" class="form-label">Route Source</label>
+    <input type="text" id="routeSource" formControlName="routeSource" class="form-control">
+    <div *ngIf="busForm.get('routeSource')?.invalid && busForm.get('routeSource')?.touched" class="text-danger">
+      Route Source is required
+    </div>
+  </div>
+  
+  <div class="mb-3">
+    <label for="routeDestination" class="form-label">Route Destination</label>
+    <input type="text" id="routeDestination" formControlName="routeDestination" class="form-control">
+    <div *ngIf="busForm.get('routeDestination')?.invalid && busForm.get('routeDestination')?.touched" class="text-danger">
+      Route Destination is required
+    </div>
+  </div>
+  
+  <div class="mb-3">
+    <label for="passengerName" class="form-label">Passenger Name</label>
+    <input type="text" id="passengerName" formControlName="passengerName" class="form-control">
+    <div *ngIf="busForm.get('passengerName')?.invalid && busForm.get('passengerName')?.touched" class="text-danger">
+      Passenger Name is required
+    </div>
+  </div>
+  
+  <div class="mb-3">
+    <label for="bookingDate" class="form-label">Booking Date</label>
+    <input type="date" id="bookingDate" formControlName="bookingDate" class="form-control">
+    <div *ngIf="busForm.get('bookingDate')?.invalid && busForm.get('bookingDate')?.touched" class="text-danger">
+      Booking Date is required
+    </div>
+  </div>
+  
+  <button type="submit" class="btn btn-primary" [disabled]="busForm.invalid">
+    {{ busId ? 'Update' : 'Book' }}
+  </button>
+</form>

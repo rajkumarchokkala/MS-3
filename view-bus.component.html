@@ -1,0 +1,11 @@
+<div *ngFor="let b of buses$ | async" class="card mb-3">
+    <div class="card-body">
+      <h5 class="card-title">Booking Id: {{b.id}}</h5>
+      <p class="card-text"><strong>Bus Number:</strong> {{b.busNumber}}</p>
+      <p class="card-text"><strong>Source:</strong> {{b.routeSource}}</p>
+      <p class="card-text"><strong>Destination:</strong> {{b.routeDestination}}</p>
+      <p class="card-text"><strong>Passenger Name:</strong> {{b.passengerName}}</p>
+      <p class="card-text"><strong>Booking Date:</strong> {{b.bookingDate}}</p>
+    </div>
+  </div>
+  
