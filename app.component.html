@@ -1,2 +1,87 @@
-<!-- <a routerLink="/add-bus">Add Bus</a> | <a routerLink="/bus-list">View Buses</a> -->
-<router-outlet></router-outlet>
+<div>
+  <form [formGroup]="patternForm" (ngSubmit)="onSubmit()">
+
+    <div>
+      <label for="username">Username: </label>
+      <input type="text" name="username" id="username" formControlName="username">
+      <div
+        *ngIf="patternForm.get('username')?.invalid && (patternForm.get('username')?.touched) || patternForm.get('username')?.dirty">
+        <small *ngIf="patternForm.get('username')?.errors?.['required']">*username is required</small>
+        <!-- <small *ngIf="patternForm.get('username')?.errors?.['minlength']">*username must contain 6 charcters</small> -->
+        <small *ngIf="patternForm.get('username')?.errors?.['pattern']">*username should match pattern</small>
+        <!-- <small *ngIf="patternForm.get('username')?.errors?.['maxlength']">*username do not contain more than 20 charcters</small> -->
+      </div>
+    </div>
+
+    <br>
+
+    <div>
+      <label for="password">Password: </label>
+      <input type="password" name="password" id="password" formControlName="password">
+      <div
+        *ngIf="patternForm.get('password')?.invalid && (patternForm.get('password')?.touched) || patternForm.get('password')?.dirty">
+        <small *ngIf="patternForm.get('password')?.errors?.['required']">*password is required</small>
+        <!-- <small *ngIf="patternForm.get('password')?.errors?.['minlength']">*password must contain 8 charcters</small> -->
+        <small *ngIf="patternForm.get('password')?.hasError('pattern')">*username should match pattern</small>
+      </div>
+    </div>
+
+    <br>
+
+    <div>
+      <label for="email">Email: </label>
+      <input type="email" name="email" id="email" formControlName="email">
+      <div
+        *ngIf="patternForm.get('email')?.invalid && (patternForm.get('email')?.touched) || patternForm.get('email')?.dirty">
+        <small *ngIf="patternForm.get('email')?.errors?.['required']">*email is required</small>
+        <!-- <small *ngIf="patternForm.get('password')?.errors?.['minlength']">*password must contain 8 charcters</small> -->
+        <small *ngIf="patternForm.get('email')?.hasError('pattern')">*email should match pattern</small>
+      </div>
+    </div>
+
+    <br>
+
+    <div>
+      <label for="date">Date: </label>
+      <input type="text" name="date" id="date" [(ngModel)]="pattern.date" formControlName="date">
+      <div
+        *ngIf="patternForm.get('date')?.invalid && (patternForm.get('date')?.touched) || patternForm.get('date')?.dirty">
+        <small *ngIf="patternForm.get('date')?.errors?.['required']">*date is required</small>
+        <!-- <small *ngIf="patternForm.get('password')?.errors?.['minlength']">*password must contain 8 charcters</small> -->
+        <small *ngIf="patternForm.get('date')?.hasError('pattern')">*date should match pattern YYYY-MM-DD</small>
+      </div>
+    </div>
+
+    <br>
+
+    <div>
+      <label for="price">Price: </label>
+      <input type="number" name="price" id="price" [(ngModel)]="pattern.price"  formControlName="price">
+      <div
+        *ngIf="patternForm.get('price')?.invalid && (patternForm.get('price')?.touched) || patternForm.get('price')?.dirty">
+        <small *ngIf="patternForm.get('price')?.errors?.['required']">*price is required</small>
+        <!-- <small *ngIf="patternForm.get('password')?.errors?.['minlength']">*password must contain 8 charcters</small> -->
+        <small *ngIf="patternForm.get('price')?.hasError('pattern')">*price should match pattern</small>
+      </div>
+    </div>
+
+    <br>
+
+    <div>
+      <label for="mobileNumber">Mobile Number: </label>
+      <input type="text" name="mobileNumber" id="mobileNumber" formControlName="mobileNumber">
+      <div
+        *ngIf="patternForm.get('mobileNumber')?.invalid && (patternForm.get('mobileNumber')?.touched) || patternForm.get('mobileNumber')?.dirty">
+        <small *ngIf="patternForm.get('mobileNumber')?.errors?.['required']">*mobileNumber is required</small>
+        <!-- <small *ngIf="patternForm.get('password')?.errors?.['minlength']">*password must contain 8 charcters</small> -->
+        <small *ngIf="patternForm.get('mobileNumber')?.hasError('pattern')">*mobileNumber should match pattern</small>
+      </div>
+    </div>
+<br>
+    <button type="submit" [disabled]="patternForm.invalid">Submit</button>
+  </form>
+</div>
+<p>{{pattern.date | date:"dd-MM-yyyy"}}</p>
+
+<br>
+<p>{{pattern.price | number:'.2'}}</p>
